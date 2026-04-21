@@ -131,8 +131,7 @@ input.invalid, select.invalid {
         </p>
 
         <div class="card" style="max-width: 380px;">
-<form id="registerForm" action="products.html" method="post">
-
+<form id="registerForm" action="products.html" method="get">
     <div class="form-group">
         <label>First Name</label>
         <input type="text" id="firstName">
@@ -383,7 +382,9 @@ document.getElementById("registerForm").addEventListener("submit", function(e){
         e.preventDefault();
         alert("Please correct all errors before submitting.");
     } else {
+        e.preventDefault(); // 🚀 STOP POST
         alert("Registration Successful!");
+        window.location.href = "products.html"; // 🚀 REDIRECT
     }
 });
 
