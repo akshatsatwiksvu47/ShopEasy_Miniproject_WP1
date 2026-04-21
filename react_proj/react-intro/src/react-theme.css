@@ -189,3 +189,10 @@ button {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+.theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 999;
+}

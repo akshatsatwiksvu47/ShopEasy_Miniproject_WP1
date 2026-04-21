@@ -76,17 +76,21 @@ function App() {
             <a href="#">Register</a>
             <a href="#">Contact</a>
 
-            {/* 🌙 DARK MODE TOGGLE */}
-            <button
-              className="btn-primary"
-              onClick={() => setDarkMode(!darkMode)}
-            >
-              {darkMode ? "☀ Light" : "🌙 Dark"}
-            </button>
+            
           </div>
 
         </div>
       </nav>
+
+      {/* 🌙 FLOATING TOGGLE BUTTON */}
+<div className="theme-toggle">
+  <button
+    className="btn-primary"
+    onClick={() => setDarkMode(!darkMode)}
+  >
+    {darkMode ? "☀ Light" : "🌙 Dark"}
+  </button>
+</div>
 
       {/* PRODUCTS */}
       <section>
