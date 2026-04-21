@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ShopEasy - Products</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .shopeasy-logo{
+        --primary:#00e5ff;
+        --accent:#ffea00;
+        --dark:#ffffff;
+        --muted:#b3e5ff;
+        width: 260px;
+        height: auto;
+        display: inline-block;
+      }
+
+      .shopeasy-logo .bag { fill: var(--primary); }
+      .shopeasy-logo .handle { stroke: #ffffff; stroke-width: 10; fill: none; stroke-linecap: round; }
+      .shopeasy-logo .bolt { fill: var(--accent); }
+      .shopeasy-logo .wordmark { fill: var(--dark); }
+      .shopeasy-logo .tagline { fill: var(--muted); }
+
+      .shopeasy-logo:hover .bolt { filter: drop-shadow(0 4px 8px rgba(0,0,0,.18)); transform: translateY(-1px); }
+      .shopeasy-logo .bolt { transition: .2s ease; transform-origin: center; }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <svg class="shopeasy-logo" viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ShopEasy logo">
+              <g transform="translate(20,20)">
+                <path class="bag" d="M60 60c0-16 13-29 29-29h72c16 0 29 13 29 29v96c0 22-18 40-40 40H100c-22 0-40-18-40-40V60z" />
+                <path class="handle" d="M92 52c0-20 16-36 36-36s36 16 36 36"/>
+
+                <!-- DIAGONAL SE -->
+                <!-- S (top-left) -->
+                <text
+                  x="105"
+                  y="115"
+                  text-anchor="middle"
+                  font-family="Georgia, serif"
+                  font-size="75"
+                  font-weight="bold"
+                  fill="var(--accent)"
+                  stroke="#000"
+                  stroke-width="1"
+                  font-style="italic">
+                  S
+                </text>
+
+                <!-- E (bottom-right) -->
+                <text
+                  x="145"
+                  y="165"
+                  text-anchor="middle"
+                  font-family="Georgia, serif"
+                  font-size="75"
+                  font-weight="bold"
+                  fill="var(--accent)"
+                  stroke="#000"
+                  stroke-width="1"
+                  font-style="italic">
+                  E
+                </text>
+
+              </g>
+
+              <g transform="translate(270,70)">
+                <text class="wordmark" x="0" y="60" font-size="72" font-weight="800" font-family="Segoe UI, Inter, Arial, sans-serif" letter-spacing="-1">
+<tspan fill="var(--accent)" font-family="Georgia, serif" font-size="70" dy="-20">S</tspan><tspan fill="var(--dark)">hop</tspan><tspan fill="var(--accent)" font-family="Georgia, serif" font-size="70" dy="25">E</tspan><tspan fill="var(--dark)">asy</tspan>
+                </text>
+                <text class="tagline" x="4" y="98" font-size="22" font-weight="600" font-family="Segoe UI, Inter, Arial, sans-serif">
+                  Smart shopping, made simple
+                </text>
+              </g>
+            </svg>
+        </a>
+
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="offers.html">Offers</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<section>
+    <div class="section-inner">
+        <h2 class="section-title">Our Products</h2>
+
+        <!-- Filter Section with Closure, Arrow Functions, Rest Parameters -->
+        <div class="filter-container">
+            <h3>Filter Products</h3>
+            <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+            <button class="filter-btn" onclick="filterProducts('laptop')">Laptops</button>
+            <button class="filter-btn" onclick="filterProducts('smartphone')">Smartphones</button>
+            <button class="filter-btn" onclick="filterProducts('smartwatch')">Smartwatches</button>
+            <button class="filter-btn" onclick="filterProducts('tablet')">Tablets</button>
+            <button class="filter-btn" onclick="showPriceStats()">Price Stats</button>
+            <div id="priceStats" class="price-display"></div>
+<div style="display: flex; justify-content: center; gap: 15px; align-items: center; margin-top: 15px;">
+              <div id="cartTotal" style="text-align: center; min-width: 200px;">Cart Total: ₹0 (0 items)</div>
+
+              <button id="emptyCart" class="empty-cart-btn filter-btn" onclick="emptyCart()" style="background: linear-gradient(45deg, #dc3545, #c82333); box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4); color: white;">Empty Cart</button>
+            </div>
+
+            <!-- JSON Activity Controls -->
+            <div id="jsonControls">
+              <button id="exportJson" class="filter-btn json-btn">📤 1. Save Cart as JSON</button>
+              <button id="editPriceBtn" class="filter-btn json-btn">✏️ 2. Edit Cart Item</button>
+              <textarea id="jsonInput" placeholder="Paste exported JSON here or auto-loads from storage..." rows="4"></textarea>
+              <button id="loadJson" class="filter-btn json-btn">📥 3. Restore Cart from JSON</button>
+              <div id="jsonOutput"></div>
+              <div id="editForm" style="display:none;">
+                <label>Pick Item: <select id="itemSelect" class="item-select"></select></label>
+                <label>New Quantity (0 removes): <input id="qtyInput" type="number" min="0" class="price-input" placeholder="e.g. 2"></label>
+                <button onclick="updateQuantity()" class="json-btn">Update Quantity</button>
+              </div>
+            </div>
+        </div>
+
+
+
+        <div class="card">
+            <img src="laptop.jpg" alt="Laptop" style="width:200px; margin-bottom:15px;">
+            <h3>Laptop</h3>
+            <p>HP | 16GB RAM | 512GB SSD</p>
+            <b>₹59,999</b>
+            <button class="add-cart-btn" data-name="Laptop" data-price="59999" data-category="laptop">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="smartphone.jpg" alt="Smartphone" style="width:180px; margin-bottom:15px;">
+            <h3>Smartphone</h3>
+            <p>Samsung | AMOLED | 64MP</p>
+            <b>₹24,999</b>
+            <button class="add-cart-btn" data-name="Smartphone" data-price="24999" data-category="smartphone">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="smartwatch.jpg" alt="Smartwatch" style="width:180px; margin-bottom:15px;">
+            <h3>Smartwatch</h3>
+            <p>Apple Watch | Series 8 | GPS</p>
+            <b>₹39,999</b>
+            <button class="add-cart-btn" data-name="Smartwatch" data-price="39999" data-category="smartwatch">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="tablet.jpg" alt="Tablet" style="width:200px; margin-bottom:15px;">
+            <h3>Tablet</h3>
+            <p>iPad | 10.9-inch | 64GB</p>
+            <b>₹49,999</b>
+            <button class="add-cart-btn" data-name="Tablet" data-price="49999" data-category="tablet">Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<footer>© 2026 ShopEasy</footer>
+
+<!-- Advanced JavaScript Functions Implementation -->
+<script>
+/* ===== 1. CLOSURE - Product Filter with Private State ===== */
+// Closure to encapsulate product filter state
+const createProductFilter = (() => {
+    // Private variables (closure scope)
+    let productData = [
+        { name: 'Laptop', category: 'laptop', price: 59999 },
+        { name: 'Smartphone', category: 'smartphone', price: 24999 },
+        { name: 'Smartwatch', category: 'smartwatch', price: 39999 },
+        { name: 'Tablet', category: 'tablet', price: 49999 }
+    ];
+    let currentFilter = 'all';
+    
+    // Private function to filter products
+    const filterByCategory = (category) => {
+        if (category === 'all') return productData;
+        return productData.filter(item => item.category === category);
+    };
+    
+    // Private arrow function to calculate total
+    const calculateTotal = (...prices) => prices.reduce((sum, price) => sum + price, 0);
+    
+    // Return public methods using closure
+    return {
+        getFilteredProducts: (category) => filterByCategory(category),
+        getAllPrices: () => productData.map(p => p.price),
+        getTotalPrice: () => calculateTotal(...productData.map(p => p.price)),
+        getAveragePrice: (prices = productData.map(p => p.price)) => {
+            // Default parameter usage
+            return calculateTotal(...prices) / prices.length;
+        },
+        getMinMax: (...prices) => {
+            // Rest parameters
+            return {
+                min: Math.min(...prices),
+                max: Math.max(...prices)
+            };
+        }
+    };
+})();
+
+// Arrow function for filtering products
+const filterProducts = (category) => {
+    // Update button states using arrow function
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase().includes(category) || 
+            (category === 'all' && btn.textContent === 'All')) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Show category message
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const h3 = card.querySelector('h3');
+        const productName = h3.textContent.toLowerCase();
+        const categoryMatch = category === 'all' || productName.includes(category);
+        card.style.display = categoryMatch ? 'block' : 'none';
+    });
+    
+    // Clear stats
+    document.getElementById('priceStats').textContent = '';
+};
+
+// Arrow function for price statistics
+const showPriceStats = () => {
+    const statsDiv = document.getElementById('priceStats');
+    const prices = createProductFilter.getAllPrices();
+    const minMax = createProductFilter.getMinMax(...prices);
+    const avg = createProductFilter.getAveragePrice();
+    
+    statsDiv.innerHTML = `
+        Average Price: ₹${avg.toFixed(2)}<br>
+        Min Price: ₹${minMax.min}<br>
+        Max Price: ₹${minMax.max}<br>
+        Total: ₹${createProductFilter.getTotalPrice()}
+    `;
+    
+    // Highlight active button
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    buttons[buttons.length - 1].classList.add('active');
+};
+
+/* ===== 2. ARROW FUNCTIONS - Price Display ===== */
+// Using arrow function for cleaner syntax
+const formatPrice = (price) => `₹${price.toLocaleString('en-IN')}`;
+const calculateDiscount = (price, discountPercent = 10) => {
+    // Default parameter
+    return price - (price * discountPercent / 100);
+};
+
+/* ===== 3. SPREAD OPERATOR - Product Data ===== */
+// Using spread to combine product arrays
+const basicProducts = ['Laptop', 'Smartphone'];
+const accessoryProducts = ['Headphones', 'Charger'];
+const allProducts = [...basicProducts, ...accessoryProducts]; // Spread operator
+
+console.log('All Products:', allProducts);
+
+/* ===== 4. CONSTRUCTOR FUNCTIONS - Product Class ===== */
+function Product(name, price, category, description) {
+  this.name = name;
+  this.price = price;
+  this.category = category;
+  this.description = description;
+  this.inCart = 0;
+}
+
+Product.prototype.getFormattedPrice = function() {
+  return '₹' + this.price.toLocaleString('en-IN');
+};
+
+Product.prototype.addToCart = function() {
+  this.inCart++;
+  return this.inCart;
+};
+
+/* ===== 5. CLOSURE - Cart Management ===== */
+const CartManager = (() => {
+  let cartItems = []; // Private cart array
+  let total = 0; // Private total
+  
+  const updateTotal = () => {
+    total = cartItems.reduce((sum, item) => sum + (item.price * item.inCart), 0);
+    document.getElementById('cartTotal').textContent = `Cart Total: ${formatPrice(total)} (${cartItems.reduce((sum, item) => sum + item.inCart, 0)} items)`;
+  };
+  
+  return {
+    addProduct: function(product) {
+      const existing = cartItems.find(item => item.name === product.name);
+      if (existing) {
+        existing.addToCart();
+      } else {
+        cartItems.push(new Product(product.name, product.price, product.category, product.description));
+        cartItems[cartItems.length - 1].addToCart();
+      }
+      updateTotal();
+      alert(`${product.name} added to cart! Cart total: ${formatPrice(total)}`);
+    },
+    getCart: () => cartItems,
+    getTotal: () => total
+  };
+})();
+
+/* ===== 6. CALL/APPLY/BIND - Cart Event Handlers ===== */
+const CartHandler = {
+  handleAddToCart: function(event) {
+    const btn = event.target;
+    const productData = {
+      name: btn.dataset.name,
+      price: parseInt(btn.dataset.price),
+      category: btn.dataset.category,
+      description: btn.parentElement.querySelector('p').textContent
+    };
+    CartManager.addProduct(productData);
+  }
+};
+
+// Bind method for event handlers
+function emptyCart() {
+  CartManager.getCart().forEach(item => item.inCart = 0);
+  CartManager.getCart().length = 0; // Clear array
+  document.getElementById('cartTotal').textContent = 'Cart Total: ₹0 (0 items)';
+  alert('Cart emptied!');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.add-cart-btn').forEach(btn => {
+    btn.addEventListener('click', CartHandler.handleAddToCart.bind(CartHandler));
+  });
+  
+  document.getElementById('emptyCart').addEventListener('click', emptyCart);
+
+  // JSON Activity 1: stringify() - Save Cart
+  document.getElementById('exportJson').onclick = function() {
+    const cart = CartManager.getCart().map(item => ({
+      name: item.name,
+      price: item.price,
+      category: item.category,
+      description: item.description,
+      inCart: item.inCart
+    }));
+    const jsonString = JSON.stringify(cart, null, 2);
+    localStorage.setItem('shopEasyCart', jsonString);
+    document.getElementById('jsonInput').value = jsonString;
+    document.getElementById('jsonOutput').textContent = `✅ Saved! ${cart.length} items → JSON string ready.`;
+    populateEditSelect(cart);
+    updateTotal(); // refresh
+  };
+
+  // JSON Activity 3: parse() - Load Cart
+  document.getElementById('loadJson').onclick = function() {
+    const jsonStr = document.getElementById('jsonInput').value || localStorage.getItem('shopEasyCart');
+    if (!jsonStr) return alert('No JSON to load!');
+    try {
+      const cartData = JSON.parse(jsonStr);
+      // Clear & reload cart
+      CartManager.getCart().length = 0;
+      cartData.forEach(data => {
+        const p = new Product(data.name, data.price, data.category || '', data.description || '');
+        p.inCart = data.inCart || 1;
+        CartManager.getCart().push(p);
+      });
+      document.getElementById('jsonOutput').textContent = `✅ Loaded ${cartData.length} items!`;
+      updateTotal();
+      populateEditSelect(cartData);
+    } catch(e) {
+      document.getElementById('jsonOutput').textContent = '❌ Invalid JSON!';
+    }
+  };
+
+  // Auto-load preview
+  if (localStorage.getItem('shopEasyCart')) {
+    document.getElementById('jsonInput').value = localStorage.getItem('shopEasyCart');
+    document.getElementById('jsonOutput').textContent = 'Auto-loaded from storage. Click Restore!';
+  }
+});
+
+// Helper: Populate edit dropdown
+function populateEditSelect(cart) {
+  const select = document.getElementById('itemSelect');
+  select.innerHTML = '';
+  cart.forEach((item, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.text = `${item.name} (₹${item.price}, qty:${item.inCart})`;
+    select.add(opt);
+  });
+  document.getElementById('editForm').style.display = cart.length ? 'block' : 'none';
+}
+
+document.getElementById('editPriceBtn').onclick = function() {
+  document.getElementById('editForm').style.display = 'block';
+};
+
+function updateQuantity() {
+  const idx = parseInt(document.getElementById('itemSelect').value);
+  const newQty = parseInt(document.getElementById('qtyInput').value);
+  if (isNaN(idx)) return document.getElementById('jsonOutput').textContent = '❌ Select item';
+  
+  const jsonStr = localStorage.getItem('shopEasyCart') || '[]';
+  let cart = JSON.parse(jsonStr);
+  
+  if (newQty <= 0) {
+    const removedItem = cart[idx]?.name || 'Item'; // store before removing
+    cart.splice(idx, 1);
+    document.getElementById('jsonOutput').textContent = `✅ ${removedItem} removed`;
+  } else {
+    cart[idx].inCart = newQty;
+    document.getElementById('jsonOutput').textContent = `✅ ${cart[idx].name} qty → ${newQty}`;
+  }
+  
+  localStorage.setItem('shopEasyCart', JSON.stringify(cart, null, 2));
+  document.getElementById('jsonInput').value = JSON.stringify(cart, null, 2);
+  document.getElementById('loadJson').click();
+  populateEditSelect(cart);
+}
+
+// Expose updateTotal globally (already defined in closure)
+window.updateTotal = () => {
+  const cartItems = CartManager.getCart();
+  let total = cartItems.reduce((sum, item) => sum + (item.price * item.inCart), 0);
+  document.getElementById('cartTotal').textContent = `Cart Total: ${formatPrice(total)} (${cartItems.reduce((sum, item) => sum + item.inCart, 0)} items)`;
+};
+
+</script>
+
+</body>
+</html>

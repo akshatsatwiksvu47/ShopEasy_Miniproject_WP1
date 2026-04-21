@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ShopEasy - Home</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.shopeasy-logo{
+--primary:#00e5ff;
+--accent:#ffea00;
+--dark:#ffffff;
+--muted:#b3e5ff;
+width:260px;
+height:auto;
+display:inline-block;
+}
+
+.shopeasy-logo .bag{fill:var(--primary);}
+.shopeasy-logo .handle{stroke:#ffffff;stroke-width:10;fill:none;stroke-linecap:round;}
+.shopeasy-logo .bolt{fill:var(--accent);}
+.shopeasy-logo .wordmark{fill:var(--dark);}
+.shopeasy-logo .tagline{fill:var(--muted);}
+
+.shopeasy-logo:hover .bolt{
+filter:drop-shadow(0 4px 8px rgba(0,0,0,.18));
+transform:translateY(-1px);
+}
+
+.shopeasy-logo .bolt{
+transition:.2s ease;
+transform-origin:center;
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+<div>
+
+<div class="hero-logo">
+
+<svg class="shopeasy-logo hero-logo-svg"
+viewBox="0 0 820 220"
+xmlns="http://www.w3.org/2000/svg"
+role="img"
+aria-label="ShopEasy logo">
+
+<!-- Icon -->
+<g transform="translate(20,20)">
+
+<path class="bag"
+d="M60 60c0-16 13-29 29-29h72c16 0 29 13 29 29v96c0 22-18 40-40 40H100c-22 0-40-18-40-40V60z"/>
+
+<path class="handle"
+d="M92 52c0-20 16-36 36-36s36 16 36 36"/>
+
+<!-- S (top-left) -->
+<text
+  x="105"
+  y="115"
+  text-anchor="middle"
+  font-family="Georgia, serif"
+  font-size="75"
+  font-weight="bold"
+  fill="var(--accent)"
+  stroke="#000"
+  stroke-width="1"
+  font-style="italic">
+  S
+</text>
+
+<!-- E (bottom-right) -->
+<text
+  x="145"
+  y="165"
+  text-anchor="middle"
+  font-family="Georgia, serif"
+  font-size="75"
+  font-weight="bold"
+  fill="var(--accent)"
+  stroke="#000"
+  stroke-width="1"
+  font-style="italic">
+  E
+</text>
+
+<!-- Wordmark -->
+<g transform="translate(270,70)">
+
+<text class="wordmark"
+x="0"
+y="60"
+font-size="97"
+font-weight="900"
+font-style="italic"
+font-family="Segoe UI, Inter, Arial, sans-serif"
+letter-spacing="-10">
+
+<tspan fill="var(--accent)" font-family="Georgia, serif" font-size="125" stroke="#000000" stroke-width="1">S</tspan>
+<tspan dx="-18" fill="var(--dark)">hop</tspan>
+<tspan dx="-12" fill="var(--accent)" font-family="Georgia, serif" font-size="125" stroke="#000000" stroke-width="1">E</tspan>
+<tspan dx="-18" fill="var(--dark)">asy</tspan>
+
+</text>
+
+<text class="tagline"
+x="4"
+y="110"
+font-size="28"
+font-weight="600"
+font-style="italic"
+font-family="Segoe UI, Inter, Arial, sans-serif"
+letter-spacing="2">
+
+Smart shopping, made simple
+
+</text>
+
+</g>
+
+</svg>
+
+</div>
+
+<p class="hero-sub">
+Your ultimate online shopping destination for electronics and gadgets.
+</p>
+
+<div class="hero-features">
+<span>🔒 Secure Payments</span>
+<span>🚚 Fast Delivery</span>
+<span>💬 24/7 Support</span>
+</div>
+
+<a href="register.html" class="btn-primary">
+Join the Revolution
+</a>
+
+</div>
+</header>
+
+
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <svg class="shopeasy-logo" viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ShopEasy logo">
+              <g transform="translate(20,20)">
+                <path class="bag" d="M60 60c0-16 13-29 29-29h72c16 0 29 13 29 29v96c0 22-18 40-40 40H100c-22 0-40-18-40-40V60z" />
+                <path class="handle" d="M92 52c0-20 16-36 36-36s36 16 36 36"/>
+
+                <!-- DIAGONAL SE -->
+                <!-- S (top-left) -->
+                <text
+                  x="105"
+                  y="115"
+                  text-anchor="middle"
+                  font-family="Georgia, serif"
+                  font-size="75"
+                  font-weight="bold"
+                  fill="var(--accent)"
+                  stroke="#000"
+                  stroke-width="1"
+                  font-style="italic">
+                  S
+                </text>
+
+                <!-- E (bottom-right) -->
+                <text
+                  x="145"
+                  y="165"
+                  text-anchor="middle"
+                  font-family="Georgia, serif"
+                  font-size="75"
+                  font-weight="bold"
+                  fill="var(--accent)"
+                  stroke="#000"
+                  stroke-width="1"
+                  font-style="italic">
+                  E
+                </text>
+
+              </g>
+
+              <g transform="translate(270,70)">
+                <text class="wordmark" x="0" y="60" font-size="72" font-weight="800" font-family="Segoe UI, Inter, Arial, sans-serif" letter-spacing="-1">
+<tspan fill="var(--accent)" font-family="Georgia, serif" font-size="70" dy="-20">S</tspan><tspan fill="var(--dark)">hop</tspan><tspan fill="var(--accent)" font-family="Georgia, serif" font-size="70" dy="25">E</tspan><tspan fill="var(--dark)">asy</tspan>
+                </text>
+                <text class="tagline" x="4" y="98" font-size="22" font-weight="600" font-family="Segoe UI, Inter, Arial, sans-serif">
+                  Smart shopping, made simple
+                </text>
+              </g>
+            </svg>
+        </a>
+
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="offers.html">Offers</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+
+<section>
+<div class="section-inner">
+
+<h2 class="section-title">Why Choose Us?</h2>
+
+<div class="features-grid">
+
+<div class="feature-card">
+<h3 class="feature-title">Trusted Products</h3>
+<p>Only genuine and reliable brands.</p>
+</div>
+
+<div class="feature-card">
+<h3 class="feature-title">Student Prices</h3>
+<p>Affordable deals made for students.</p>
+</div>
+
+<div class="feature-card">
+<h3 class="feature-title">Easy Registration</h3>
+<p>Quick and simple signup process.</p>
+</div>
+
+<!-- 🔥 REACT INTEGRATION CARD -->
+<div class="feature-card" style="
+margin-top:40px;
+text-align:center;
+grid-column: 1 / -1;
+max-width: 900px;
+margin-left:auto;
+margin-right:auto;
+">
+
+<h3 class="feature-title">⚛️ React Smart Cart</h3>
+
+<p>
+Try our advanced shopping cart built using React with real-time updates,
+quantity management, and dynamic pricing.
+</p>
+
+<br>
+
+<a href="react/build/index.html"" target="_blank" class="btn-primary">
+  Open React Cart 🚀
+
+</a>
+
+</div>
+</div>
+</div>
+</section>
+
+
+<footer>
+© 2026 ShopEasy. All Rights Reserved.
+</footer>
+
+<!-- Advanced JavaScript Functions Implementation -->
+<script>
+/* ===== 1. IIFE - Shopping Cart Module ===== */
+const ShoppingCart = (() => {
+    // Private variables - closure scope
+    let cartItems = [];
+    let discount = 0;
+    
+    // Private arrow functions
+    const calculateSubtotal = () => cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const applyDiscount = (amount, discountPercent = 10) => amount - (amount * discountPercent / 100);
+    
+    // Return public methods
+    return {
+        addItem: (name, price, qty = 1) => {
+            cartItems.push({ name, price, qty });
+            return cartItems.length;
+        },
+        
+        removeItem: (index) => {
+            if (index >= 0 && index < cartItems.length) {
+                cartItems.splice(index, 1);
+            }
+            return cartItems.length;
+        },
+        
+        getCart: () => [...cartItems], // Return copy
+        
+        getTotal: (withDiscount = false) => {
+            const subtotal = calculateSubtotal();
+            return withDiscount ? applyDiscount(subtotal, discount) : subtotal;
+        },
+        
+        setDiscount: (percent) => {
+            discount = percent;
+        },
+        
+        clearCart: () => {
+            cartItems = [];
+        },
+        
+        getItemCount: () => cartItems.length
+    };
+})();
+
+/* ===== 2. ARROW FUNCTIONS ===== */
+// Arrow functions for product display
+const formatCurrency = (amount) => `₹${amount.toLocaleString('en-IN')}`;
+const calculateSavings = (original, discounted) => original - discounted;
+const showDiscountBadge = (discountPercent) => `${discountPercent}% OFF`;
+
+// Arrow function for feature animations
+const animateFeatures = () => {
+    const features = document.querySelectorAll('.feature-card');
+    features.forEach((feature, index) => {
+        setTimeout(() => {
+            feature.style.opacity = '1';
+            feature.style.transform = 'translateY(0)';
+        }, index * 200);
+    });
+};
+
+/* ===== 3. DEFAULT PARAMETERS ===== */
+function getProductRecommendations(category = 'electronics', limit = 3, includeOutOfStock = false) {
+    // Default parameters for product recommendations
+    const products = [
+        { name: 'Laptop', category: 'electronics', inStock: true },
+        { name: 'Smartphone', category: 'electronics', inStock: true },
+        { name: 'Smartwatch', category: 'electronics', inStock: false },
+        { name: 'Tablet', category: 'electronics', inStock: true }
+    ];
+    
+    let filtered = products.filter(p => p.category === category);
+    if (!includeOutOfStock) {
+        filtered = filtered.filter(p => p.inStock);
+    }
+    return filtered.slice(0, limit);
+}
+
+/* ===== 4. REST PARAMETERS ===== */
+// Function using rest parameters for order summary
+function createOrderSummary(...items) {
+    return items.map(item => ({
+        item: item.name,
+        price: item.price,
+        quantity: item.qty || 1,
+        subtotal: (item.price || 0) * (item.qty || 1)
+    }));
+}
+
+/* ===== 5. SPREAD OPERATOR ===== */
+// Using spread to combine and clone arrays
+const electronicsProducts = ['Laptop', 'Smartphone', 'Smartwatch'];
+const accessoriesProducts = ['Headphones', 'Charger', 'Case'];
+const allDisplayedProducts = [...electronicsProducts, ...accessoriesProducts]; // Spread
+
+// Using spread to update cart
+const updateCartDisplay = (...items) => {
+    console.log('Cart Items:', items);
+    return items.length;
+};
+
+/* ===== 6. call(), apply(), bind() ===== */
+// Product object with display method
+const ProductDisplay = {
+    name: 'Sample Product',
+    showDetails: function(discount = 0) {
+        return `${this.name} - ${discount}% discount applied`;
+    }
+};
+
+// Using call() - borrow method for different object
+const showLaptopDetails = ProductDisplay.showDetails.call({ name: 'HP Laptop' }, 15);
+
+// Using apply() - pass arguments as array
+const showPhoneDetails = ProductDisplay.showDetails.apply({ name: 'Samsung Phone' }, [20]);
+
+// Using bind() - create new function with bound context
+const showTabletDetails = ProductDisplay.showDetails.bind({ name: 'iPad Tablet' });
+
+// Interactive price calculator with bind
+const calculatePrice = function(basePrice, taxRate = 18) {
+    const tax = basePrice * (taxRate / 100);
+    return basePrice + tax;
+};
+
+const calculateWithGST = calculatePrice.bind(null); // Bind base price
+const calculateLuxuryTax = calculatePrice.bind(null, 28); // Bind with custom tax rate
+
+/* ===== Initialize Features ===== */
+// Add sample items to cart using IIFE
+(() => {
+    ShoppingCart.addItem('Laptop', 59999, 1);
+    ShoppingCart.addItem('Smartphone', 24999, 2);
+    ShoppingCart.setDiscount(10);
+    console.log('Cart initialized:', ShoppingCart.getCart());
+    console.log('Cart Total:', formatCurrency(ShoppingCart.getTotal(true)));
+})();
+
+// Initialize feature animations
+document.addEventListener('DOMContentLoaded', () => {
+    // Apply initial styles for animation
+    const features = document.querySelectorAll('.feature-card');
+    features.forEach(feature => {
+        feature.style.opacity = '0';
+        feature.style.transform = 'translateY(20px)';
+        feature.style.transition = 'all 0.5s ease';
+    });
+    
+    // Run animation
+    setTimeout(animateFeatures, 500);
+    
+    // Log product recommendations
+    console.log('Recommended Products:', getProductRecommendations());
+    console.log('All Products:', allDisplayedProducts);
+    console.log('Laptop Price with GST:', formatCurrency(calculateWithGST(59999)));
+    console.log('Luxury Item Price:', formatCurrency(calculateLuxuryTax(50000)));
+});
+
+</script>
+
+</body>
+</html>

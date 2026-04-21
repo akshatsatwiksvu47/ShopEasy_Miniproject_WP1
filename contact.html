@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ShopEasy - Contact</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .shopeasy-logo{
+        --primary:#00e5ff;
+        --accent:#ffea00;
+        --dark:#ffffff;
+        --muted:#b3e5ff;
+        width: 260px;
+        height: auto;
+        display: inline-block;
+      }
+
+      .shopeasy-logo .bag { fill: var(--primary); }
+      .shopeasy-logo .handle { stroke: #ffffff; stroke-width: 10; fill: none; stroke-linecap: round; }
+      .shopeasy-logo .bolt { fill: var(--accent); }
+      .shopeasy-logo .wordmark { fill: var(--dark); }
+      .shopeasy-logo .tagline { fill: var(--muted); }
+
+      .shopeasy-logo:hover .bolt { filter: drop-shadow(0 4px 8px rgba(0,0,0,.18)); transform: translateY(-1px); }
+      .shopeasy-logo .bolt { transition: .2s ease; transform-origin: center; }
+    </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <svg class="shopeasy-logo" viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ShopEasy logo">
+              <g transform="translate(20,20)">
+                <path class="bag" d="M60 60c0-16 13-29 29-29h72c16 0 29 13 29 29v96c0 22-18 40-40 40H100c-22 0-40-18-40-40V60z" />
+                <path class="handle" d="M92 52c0-20 16-36 36-36s36 16 36 36"/>
+
+                <!-- DIAGONAL SE -->
+                <!-- S (top-left) -->
+                <text
+                  x="105"
+                  y="115"
+                  text-anchor="middle"
+                  font-family="Georgia, serif"
+                  font-size="75"
+                  font-weight="bold"
+                  fill="var(--accent)"
+                  stroke="#000"
+                  stroke-width="1"
+                  font-style="italic">
+                  S
+                </text>
+
+                <!-- E (bottom-right) -->
+                <text
+                  x="145"
+                  y="165"
+                  text-anchor="middle"
+                  font-family="Georgia, serif"
+                  font-size="75"
+                  font-weight="bold"
+                  fill="var(--accent)"
+                  stroke="#000"
+                  stroke-width="1"
+                  font-style="italic">
+                  E
+                </text>
+
+              </g>
+
+              <g transform="translate(270,70)">
+                <text class="wordmark" x="0" y="60" font-size="72" font-weight="800" font-family="Segoe UI, Inter, Arial, sans-serif" letter-spacing="-1">
+<tspan fill="var(--accent)" font-family="Georgia, serif" font-size="70" dy="-20">S</tspan><tspan fill="var(--dark)">hop</tspan><tspan fill="var(--accent)" font-family="Georgia, serif" font-size="70" dy="25">E</tspan><tspan fill="var(--dark)">asy</tspan>
+                </text>
+                <text class="tagline" x="4" y="98" font-size="22" font-weight="600" font-family="Segoe UI, Inter, Arial, sans-serif">
+                  Smart shopping, made simple
+                </text>
+              </g>
+            </svg>
+        </a>
+
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="offers.html">Offers</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+
+<section>
+    <div class="section-inner">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-sub">
+            We’d love to hear from you. Reach out to us anytime.
+        </p>
+
+        <div class="card">
+            📧 <strong>Email:</strong> support@shopeasy.com
+        </div>
+
+        <div class="card">
+            📞 <strong>Phone:</strong> +91 98765 43210, +91 98192 68747
+        </div>
+
+        <div class="card">
+            📍 <strong>Location:</strong> Mumbai, India
+        </div>
+    </div>
+</section>
+
+
+<section>
+  <div class="section-inner">
+    <h2 class="section-title">Find Us on Map</h2>
+    <p class="section-sub">Use your current location to see where you are.</p>
+
+    <div class="geo-actions">
+      <button class="btn-primary" onclick="getLocation()">Use My Location</button>
+    </div>
+
+    <div id="demo" class="geo-output">Click the button to fetch your coordinates.</div>
+    <div id="map"></div>
+  </div>
+</section>
+
+<footer>© 2026 ShopEasy. All Rights Reserved.</footer>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+/* ===== 1. CLOSURE - Map State Management ===== */
+const MapManager = (() => {
+    // Private variables - closure scope
+    let map = null;
+    let marker = null;
+    let locationHistory = [];
+    const DEFAULT_COORDS = [19.0760, 72.8777]; // Mumbai
+    
+    // Private arrow functions
+    const createCustomIcon = () => L.divIcon({
+        className: "custom-marker",
+        html: `<svg width="50" height="50" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" fill="#007BFF"/>
+                <circle cx="50" cy="50" r="20" fill="white"/>
+                <circle cx="50" cy="50" r="8" fill="black"/></svg>`,
+        iconSize: [50, 50],
+        iconAnchor: [25, 25]
+    });
+    
+    const addToHistory = (coords) => {
+        locationHistory.push(coords);
+        if (locationHistory.length > 5) locationHistory.shift(); // Keep last 5
+    };
+    
+    // Return public methods
+    return {
+        initMap: (elementId = "map") => {
+            if (!map) {
+                map = L.map(elementId).setView(DEFAULT_COORDS, 12);
+                L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }).addTo(map);
+            }
+            return map;
+        },
+        
+        setView: (lat, lon, zoom = 16) => {
+            if (map) map.setView([lat, lon], zoom);
+        },
+        
+        addMarker: (lat, lon, message = "Location") => {
+            if (map) {
+                if (marker) map.removeLayer(marker);
+                marker = L.marker([lat, lon], { icon: createCustomIcon() })
+                    .addTo(map)
+                    .bindPopup(message)
+                    .openPopup();
+                addToHistory([lat, lon]);
+            }
+            return marker;
+        },
+        
+        getHistory: () => [...locationHistory], // Return copy of history
+        
+        clearHistory: () => {
+            locationHistory = [];
+        },
+        
+        getDefaultCoords: () => [...DEFAULT_COORDS] // Spread - return copy
+    };
+})();
+
+/* ===== 2. ARROW FUNCTIONS ===== */
+// Arrow functions for geolocation handling
+const x = document.getElementById("demo");
+
+// Arrow function for success callback
+const success = (p) => {
+    const { latitude, longitude } = p.coords;
+    x.innerHTML = `Latitude: ${latitude.toFixed(6)}<br>Longitude: ${longitude.toFixed(6)}`;
+    MapManager.addMarker(latitude, longitude, "Your current location!");
+    MapManager.setView(latitude, longitude);
+};
+
+// Arrow function for error callback
+const error = (err) => {
+    const messages = {
+        1: "User denied the request for Geolocation.",
+        2: "Location information is unavailable.",
+        3: "The request to get user location timed out.",
+        default: "An unknown error occurred."
+    };
+    x.innerHTML = messages[err.code] || messages.default;
+};
+
+/* ===== 3. DEFAULT PARAMETERS ===== */
+function getLocation(enableHighAccuracy = true, timeout = 10000, maximumAge = 0) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error, {
+            enableHighAccuracy,
+            timeout,
+            maximumAge
+        });
+    } else {
+        x.innerHTML = "Geolocation not supported.";
+    }
+}
+
+/* ===== 4. REST PARAMETERS ===== */
+// Function that accepts variable arguments
+function logLocationDetails(...details) {
+    console.log("Location Details:", details);
+    const [lat, lon, accuracy, timestamp] = details;
+    return { lat, lon, accuracy, timestamp };
+}
+
+/* ===== 5. SPREAD OPERATOR ===== */
+// Using spread to combine location data
+const baseLocation = { city: "Mumbai", country: "India" };
+const userLocation = { ...baseLocation, district: "Maharashtra", pincode: "400001" };
+
+/* ===== 6. bind() - For Event Handlers ===== */
+// Creating bound handler for location button
+const handleGetLocation = getLocation.bind(null, true, 10000, 0);
+
+// Initialize map on page load using arrow function
+document.addEventListener("DOMContentLoaded", () => {
+    MapManager.initMap("map");
+    console.log("Map initialized with default view:", MapManager.getDefaultCoords());
+    console.log("User location data:", userLocation);
+});
+
+</script>
+</body>
+</html>

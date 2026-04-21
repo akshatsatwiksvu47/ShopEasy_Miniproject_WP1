@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ShopEasy - Register</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .shopeasy-logo{
+        --primary:#00e5ff;
+        --accent:#ffea00;
+        --dark:#ffffff;
+        --muted:#b3e5ff;
+        width: 260px;
+        height: auto;
+        display: inline-block;
+      }
+
+      .shopeasy-logo .bag { fill: var(--primary); }
+      .shopeasy-logo .handle { stroke: #ffffff; stroke-width: 10; fill: none; stroke-linecap: round; }
+      .shopeasy-logo .bolt { fill: var(--accent); }
+      .shopeasy-logo .wordmark { fill: var(--dark); }
+      .shopeasy-logo .tagline { fill: var(--muted); }
+
+      .shopeasy-logo:hover .bolt { filter: drop-shadow(0 4px 8px rgba(0,0,0,.18)); transform: translateY(-1px); }
+      .shopeasy-logo .bolt { transition: .2s ease; transform-origin: center; }
+
+      .error {
+    color: red;
+    font-size: 13px;
+    display: block;
+    margin-top: 4px;
+}
+
+input, select {
+    border: 2px solid #ccc;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+input.valid, select.valid {
+    border-color: green;
+}
+
+input.invalid, select.invalid {
+    border-color: red;
+}
+
+.strength-bar {
+    height: 6px;
+    background: #ddd;
+    margin-top: 6px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#strengthFill {
+    height: 100%;
+    width: 0%;
+    transition: 0.3s;
+}
+
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <svg class="shopeasy-logo" viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ShopEasy logo">
+              <g transform="translate(20,20)">
+                <path class="bag" d="M60 60c0-16 13-29 29-29h72c16 0 29 13 29 29v96c0 22-18 40-40 40H100c-22 0-40-18-40-40V60z" />
+                <path class="handle" d="M92 52c0-20 16-36 36-36s36 16 36 36"/>
+
+                <!-- DIAGONAL SE -->
+                <!-- S (top-left) -->
+                <text
+                  x="105"
+                  y="115"
+                  text-anchor="middle"
+                  font-family="Georgia, serif"
+                  font-size="75"
+                  font-weight="bold"
+                  fill="var(--accent)"
+                  stroke="#000"
+                  stroke-width="1"
+                  font-style="italic">
+                  S
+                </text>
+
+                <!-- E (bottom-right) -->
+                <text
+                  x="145"
+                  y="165"
+                  text-anchor="middle"
+                  font-family="Georgia, serif"
+                  font-size="75"
+                  font-weight="bold"
+                  fill="var(--accent)"
+                  stroke="#000"
+                  stroke-width="1"
+                  font-style="italic">
+                  E
+                </text>
+
+              </g>
+
+              <g transform="translate(270,70)">
+                <text class="wordmark" x="0" y="60" font-size="72" font-weight="800" font-family="Segoe UI, Inter, Arial, sans-serif" letter-spacing="-1">
+<tspan fill="var(--accent)" font-family="Georgia, serif" font-size="70" dy="-20">S</tspan><tspan fill="var(--dark)">hop</tspan><tspan fill="var(--accent)" font-family="Georgia, serif" font-size="70" dy="25">E</tspan><tspan fill="var(--dark)">asy</tspan>
+                </text>
+                <text class="tagline" x="4" y="98" font-size="22" font-weight="600" font-family="Segoe UI, Inter, Arial, sans-serif">
+                  Smart shopping, made simple
+                </text>
+              </g>
+            </svg>
+        </a>
+
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="offers.html">Offers</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<section>
+    <div class="section-inner">
+        <h2 class="section-title">User Registration</h2>
+        <p class="section-sub">
+            Please fill in the form below to create your account.
+        </p>
+
+        <div class="card" style="max-width: 380px;">
+<form id="registerForm" action="products.html" method="post">
+
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text" id="firstName">
+        <span class="error" id="firstNameError"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" id="lastName">
+        <span class="error" id="lastNameError"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email">
+        <span class="error" id="emailError"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password">
+
+        <div class="strength-bar">
+            <div id="strengthFill"></div>
+        </div>
+
+        <span class="error" id="passwordError"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Age</label>
+        <input type="number" id="age">
+        <span class="error" id="ageError"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Gender</label>
+        <select id="gender">
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Prefer not to say</option>
+        </select>
+        <span class="error" id="genderError"></span>
+    </div>
+
+    <button class="btn" type="submit" id="submitBtn" disabled>
+        Submit Registration
+    </button>
+
+</form>
+</div>
+
+    </div>
+</section>
+
+
+<!-- JavaScript Validation with Advanced Functions -->
+<script>
+/* ===== 1. IIFE - Form Validation Module ===== */
+// Immediately Invoked Function Expression for encapsulation
+const FormValidator = (() => {
+    // Private variables
+    const namePattern  = /^[A-Za-z ]+$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    // Private helper function
+    const trimValue = (value) => value ? value.trim() : '';
+    
+    // Return public methods
+    return {
+        validateName: (name) => {
+            const trimmed = trimValue(name);
+            return trimmed !== '' && namePattern.test(trimmed);
+        },
+        validateEmail: (email) => {
+            const trimmed = trimValue(email);
+            return trimmed !== '' && emailPattern.test(trimmed);
+        },
+        validateAge: (age, minAge = 1, maxAge = 120) => {
+            // Default parameters for min/max age
+            const ageNum = Number(age);
+            return ageNum >= minAge && ageNum <= maxAge;
+        }
+    };
+})();
+
+/* ===== 2. DEFAULT PARAMETERS ===== */
+function calculatePasswordScore(password, minLength = 8) {
+    // Default parameter for minimum length
+    let score = 0;
+    if(password.length >= minLength) score++;
+    if(/[A-Z]/.test(password)) score++;
+    if(/[a-z]/.test(password)) score++;
+    if(/[0-9]/.test(password)) score++;
+    if(/[@$!%*?&]/.test(password)) score++;
+    return score;
+}
+
+/* ===== 3. ARROW FUNCTIONS ===== */
+const setValid = (input, errorEl) => {
+    input.classList.remove("invalid");
+    input.classList.add("valid");
+    errorEl.textContent = "";
+};
+
+const setInvalid = (input, errorEl, message) => {
+    input.classList.remove("valid");
+    input.classList.add("invalid");
+    errorEl.textContent = message;
+};
+
+// Arrow function for password strength
+const checkPasswordStrength = (value) => {
+    const score = calculatePasswordScore(value);
+    
+    if(score <= 2){
+        strengthFill.style.width = "30%";
+        strengthFill.style.background = "red";
+    }
+    else if(score <= 4){
+        strengthFill.style.width = "60%";
+        strengthFill.style.background = "orange";
+    }
+    else{
+        strengthFill.style.width = "100%";
+        strengthFill.style.background = "green";
+    }
+    
+    return score >= 4;
+};
+
+/* ===== 4. call(), apply(), bind() - Method Sharing ===== */
+// Utility object with validation method
+const ValidationHelper = {
+    showError: function(input, errorEl, message) {
+        setInvalid(input, errorEl, message);
+    },
+    showSuccess: function(input, errorEl) {
+        setValid(input, errorEl);
+    }
+};
+
+// Using call() to borrow method
+const showFieldError = function(input, errorEl, message) {
+    this.showError(input, errorEl, message);
+};
+
+// Using apply() for flexible argument passing
+function validateMultipleFields(...fields) {
+    // apply() passes array as arguments
+    return fields.every(field => field.isValid);
+}
+
+// Using bind() for event handlers
+const firstName = document.getElementById("firstName");
+const lastName  = document.getElementById("lastName");
+const email     = document.getElementById("email");
+const password  = document.getElementById("password");
+const age       = document.getElementById("age");
+const gender    = document.getElementById("gender");
+const submitBtn = document.getElementById("submitBtn");
+const strengthFill = document.getElementById("strengthFill");
+
+/* ===== 5. REST PARAMETERS ===== */
+// Function using rest parameters
+function getFormData(...fieldIds) {
+    return fieldIds.map(id => {
+        const el = document.getElementById(id);
+        return { id: id, value: el.value, element: el };
+    });
+}
+
+/* ===== 6. SPREAD OPERATOR ===== */
+// Merge default fields with additional fields
+const defaultFields = ['firstName', 'lastName', 'email'];
+const optionalFields = ['age', 'gender'];
+const allFormFields = [...defaultFields, 'password', ...optionalFields]; // Spread operator
+
+/* ===== MAIN VALIDATION ===== */
+
+function validateForm(){
+    let valid = true;
+    
+    // Using bind() to create handler with specific context
+    const handleFirstName = showFieldError.bind(ValidationHelper);
+    
+    if(!FormValidator.validateName(firstName.value)){
+        handleFirstName(firstName, firstNameError, "Only letters allowed");
+        valid = false;
+    } else {
+        ValidationHelper.showSuccess(firstName, firstNameError); // Using call()
+    }
+    
+    if(!FormValidator.validateName(lastName.value)){
+        handleFirstName(lastName, lastNameError, "Only letters allowed");
+        valid = false;
+    } else {
+        ValidationHelper.showSuccess(lastName, lastNameError);
+    }
+    
+    if(!FormValidator.validateEmail(email.value)){
+        handleFirstName(email, emailError, "Invalid email format");
+        valid = false;
+    } else {
+        ValidationHelper.showSuccess(email, emailError);
+    }
+    
+    if(!checkPasswordStrength(password.value)){
+        handleFirstName(password, passwordError, "Password too weak");
+        valid = false;
+    } else {
+        ValidationHelper.showSuccess(password, passwordError);
+    }
+    
+    // Using default parameters
+    if(!FormValidator.validateAge(age.value)){
+        handleFirstName(age, ageError, "Age must be between 1 and 120");
+        valid = false;
+    } else {
+        ValidationHelper.showSuccess(age, ageError);
+    }
+    
+    if(gender.value === ""){
+        handleFirstName(gender, genderError, "Select your gender");
+        valid = false;
+    } else {
+        ValidationHelper.showSuccess(gender, genderError);
+    }
+    
+    submitBtn.disabled = !valid;
+    return valid;
+}
+
+/* ===== EVENT LISTENERS with bind() ===== */
+
+// Using arrow functions for event handlers
+[firstName, lastName, email, password, age].forEach(field => {
+    field.addEventListener("input", () => validateForm()); // Arrow function
+});
+
+gender.addEventListener("change", () => validateForm()); // Arrow function
+
+/* ===== Submit Handling ===== */
+
+document.getElementById("registerForm").addEventListener("submit", function(e){
+    if(!validateForm()){
+        e.preventDefault();
+        alert("Please correct all errors before submitting.");
+    } else {
+        alert("Registration Successful!");
+    }
+});
+
+// Initialize
+validateForm();
+
+/* ===== Using apply() for array operations ===== */
+// Example: Using apply() with Math.max
+const prices = [59999, 24999, 39999, 49999];
+const maxPrice = Math.max.apply(null, prices);
+const minPrice = Math.min.apply(null, prices);
+
+console.log('Price Range:', minPrice, '-', maxPrice);
+console.log('All Form Fields:', allFormFields);
+
+</script>
+
+
+
+<footer>
+    © 2026 ShopEasy. All Rights Reserved.
+</footer>
+
+</body>
+</html>
